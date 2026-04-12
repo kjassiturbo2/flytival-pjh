@@ -49,6 +49,7 @@ BRIGHT_GREEN = "\033[92m"
 BRIGHT_MAGENTA = "\033[95m"
 BRIGHT_BLUE = "\033[94m"
 
+USER = "Benedikt"  # Change this to your name for personalized greetings
 
 def _greeting() -> str:
     """Return a random time-appropriate greeting."""
@@ -56,14 +57,14 @@ def _greeting() -> str:
     day_name = datetime.now().strftime("%A")
 
     if hour < 12:
-        time_greetings = ["Good morning, Kjartan!", "Morning, Kjartan!", "Good morning!"]
+        time_greetings = [f"Good morning, {USER}!", f"Morning, {USER}!", f"Good morning, {USER}!"]
     elif hour < 17:
-        time_greetings = ["Good afternoon, Kjartan!", "Afternoon, Kjartan!", "Good afternoon!"]
+        time_greetings = [f"Good afternoon, {USER}!", f"Afternoon, {USER}!", f"Good afternoon, {USER}!"]
     else:
-        time_greetings = ["Good evening, Kjartan!", "Evening, Kjartan!", "Good evening!"]
+        time_greetings = [f"Good evening, {USER}!", f"Evening, {USER}!", f"Good evening, {USER}!"]
 
-    generic = ["Hey Kjartan!", "Hi Kjartan!", "Hello, Kjartan!"]
-    day_specific = [f"Happy {day_name}!", f"Happy {day_name}, Kjartan!"]
+    generic = [f"Hey {USER}!", f"Hi {USER}!", f"Hello, {USER}!"]
+    day_specific = [f"Happy {day_name}!", f"Happy {day_name}, {USER}!"]
 
     # Weight: 60% time-based, 20% generic, 20% day-specific
     pool = time_greetings * 3 + generic + day_specific

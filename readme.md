@@ -44,7 +44,7 @@ Then open `coding_agent_launcher.py` and update the path constants near the top 
 PROJECTS_DIR = Path.home() / "your" / "chosen" / "path"
 ```
 
-### 2. Add a shell function
+### 2. Add shell functions
 
 Add this to your `~/.zshrc` or `~/.bashrc`, replacing the path with wherever you placed the files:
 
@@ -60,9 +60,21 @@ function cc() {
     cd "$dir" && claude
   fi
 }
+
+function cx() {
+  if [[ "$1" == "np" || "$1" == "nr" ]]; then
+    python3 ~/your/chosen/path/coding_agent_launcher.py "$1" "${@:2}" "$PWD"
+    return
+  fi
+  local dir
+  dir=$(python3 ~/your/chosen/path/coding_agent_launcher.py "$PWD")
+  if [ $? -eq 0 ] && [ -n "$dir" ]; then
+    cd "$dir" && codex
+  fi
+}
 ```
 
-Replace `claude` with `codex` or any other command you want to launch after switching directories.
+`cc` launches Claude Code after switching directories; `cx` launches Codex. Both support the `np` and `nr` subcommands.
 
 ### 3. Track recent directories (optional)
 
@@ -163,6 +175,8 @@ Run `cc` from your terminal. The menu looks like this:
 cc np "My New Project"   # add a new project entry to projects.yaml
 cc nr "my-new-repo"      # add a new repository entry to repositories.yaml
 ```
+
+`cx np` and `cx nr` work identically — both `cc` and `cx` share the same subcommands.
 
 Both commands prompt you to either use the current directory or enter a path manually.
 
