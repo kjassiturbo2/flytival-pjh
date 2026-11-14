@@ -1,3 +1,8 @@
+# Deprecation note
+Date: november 4, 2026
+
+This project is now archived. It never really worked and I do not intend to try to make it work. Things have changed, lads.
+
 # Claude Code / Codex Project Switcher
 
 A terminal project launcher for [Claude Code](https://claude.ai/code) and Codex. Press `cc` to jump into any project and launch your coding agent in the right directory.
